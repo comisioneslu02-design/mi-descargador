@@ -165,7 +165,7 @@
             loader.style.display = 'block';
 
             try {
-                // Llama a la API de Vercel
+                // Llama a la API de Vercel/Render
                 const response = await fetch(`/api/download?url=${encodeURIComponent(urlInput)}&format=${format}`);
                 
                 if (!response.ok) {
@@ -179,31 +179,23 @@
                     throw new Error(errorMessage);
                 }
 
-                // Descargar el archivo
-                const blob = await response.blob();
-                const downloadUrl = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = downloadUrl;
+                // Obtener el JSON de nuestra API
+                const data = await response.json();
                 
-                // Extraer el nombre del archivo de las cabeceras si es posible
-                let filename = `descarga.${format}`;
-                const disposition = response.headers.get('content-disposition');
-                if (disposition && disposition.indexOf('attachment') !== -1) {
-                    const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-                    const matches = filenameRegex.exec(disposition);
-                    if (matches != null && matches[1]) { 
-                        filename = matches[1].replace(/['"]/g, '');
-                    }
+                if (data.downloadUrl) {
+                    // Abrir la URL en una nueva pestaña (o forzar descarga en la misma)
+                    const a = document.createElement('a');
+                    a.href = data.downloadUrl;
+                    a.download = data.filename || `descarga.${format}`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    
+                    statusText.style.color = '#10b981';
+                    statusText.innerText = '¡Descarga iniciada!';
+                } else {
+                    throw new Error('No se recibió la URL de descarga.');
                 }
-
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(downloadUrl);
-                
-                statusText.style.color = '#10b981';
-                statusText.innerText = '¡Descarga completada!';
             } catch (error) {
                 console.error(error);
                 statusText.style.color = '#ef4444';

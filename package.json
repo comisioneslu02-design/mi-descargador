@@ -4,7 +4,9 @@
   "description": "Descargador de videos de YouTube listo para Vercel",
   "dependencies": {
     "express": "^5.2.1",
-    "pm2": "^7.0.1",
-    "youtube-dl-exec": "latest"
+    "pm2": "^7.0.1"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
