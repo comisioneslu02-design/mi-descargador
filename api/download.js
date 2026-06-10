@@ -31,7 +31,8 @@ module.exports = async (req, res) => {
 
     let args = {
       noCheckCertificates: true,
-      noWarnings: true
+      noWarnings: true,
+      extractorArgs: "youtube:player_client=android"
     };
 
     let ext = '';
