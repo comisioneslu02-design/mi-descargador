@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
     let args = {
       noCheckCertificates: true,
       noWarnings: true,
-      extractorArgs: "youtube:player_client=android"
+      extractorArgs: "youtube:player_client=mweb,default"
     };
 
     let ext = '';
