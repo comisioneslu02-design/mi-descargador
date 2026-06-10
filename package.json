@@ -1,0 +1,10 @@
+{
+  "name": "mi-descargador-vercel",
+  "version": "1.0.0",
+  "description": "Descargador de videos de YouTube listo para Vercel",
+  "dependencies": {
+    "express": "^5.2.1",
+    "pm2": "^7.0.1",
+    "youtube-dl-exec": "^3.1.7"
+  }
+}

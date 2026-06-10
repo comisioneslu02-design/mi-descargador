@@ -1,0 +1,12 @@
+node_modules
+*.log
+*.mp3
+*.mp4
+*.luzbak
+temp
+mp3
+mp4
+Cosas
+sistema
+.cache
+.pm2
