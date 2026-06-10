@@ -82,7 +82,7 @@ module.exports = async (req, res) => {
   } catch (error) {
     console.error('Error al procesar el video:', error);
     if (!res.headersSent) {
-      res.status(500).json({ error: 'Error al procesar el video. Verifica el enlace o intenta de nuevo.' });
+      res.status(500).json({ error: 'Fallo yt-dlp: ' + (error.message || error.toString()) });
     }
   }
 };
