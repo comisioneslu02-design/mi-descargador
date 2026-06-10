@@ -5,6 +5,6 @@
   "dependencies": {
     "express": "^5.2.1",
     "pm2": "^7.0.1",
-    "youtube-dl-exec": "^3.1.7"
+    "youtube-dl-exec": "latest"
   }
 }

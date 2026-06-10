@@ -32,7 +32,12 @@ module.exports = async (req, res) => {
     let args = {
       noCheckCertificates: true,
       noWarnings: true,
-      extractorArgs: "youtube:player_client=mweb,default"
+      preferFreeFormats: true,
+      addHeader: [
+        'referer:youtube.com',
+        'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
+      ],
+      extractorArgs: "youtube:player_client=ios,tv,web"
     };
 
     let ext = '';
